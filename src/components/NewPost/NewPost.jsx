@@ -5,7 +5,7 @@ import './NewPost.css';
 import { newPostPost } from '../../redux/post/post.action';
 
 
-const NewPost = ({ posts }) => {
+const NewPost = () => {
     const { register, handleSubmit } = useForm();
     //En este caso he usado useRef(), para referenciar el formulario y poder hacer uso de esta referencia en el redux, y así poder resetear los valores del formulario.
     const form = useRef();
@@ -24,7 +24,7 @@ const NewPost = ({ posts }) => {
             position="relative"
         >
             <h3 className='title'>Nuevo Post</h3>
-            <form ref={form} onSubmit={handleSubmit((datos) => newPostPost(datos, posts, form))}>
+            <form ref={form} onSubmit={handleSubmit((datos) => newPostPost(datos, form))}>
                 <div className='input'>
                     <input className='new_post post_title' placeholder='Un título para tu post' {...register('title')} />
                 </div>

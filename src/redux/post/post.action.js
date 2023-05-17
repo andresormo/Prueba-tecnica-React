@@ -19,11 +19,12 @@ const getPosts = async () => {
     }
 }
 
-const newPostPost = async (datos, posts, form) => {
-    dispatch({ type: "LOADIG" });
 
+let nextId = 101;
+const newPostPost = async (datos, form) => {
+    dispatch({ type: "LOADIG" });
     const formData = new FormData();
-    datos.id = posts.length + 1;
+    datos.id = nextId++;
     datos.userId = "MockUser"
     formData.append("title", datos.title);
     formData.append("body", datos.body);
@@ -43,12 +44,15 @@ const newPostPost = async (datos, posts, form) => {
 }
 const deletePost = async(post, posts)=>{
     dispatch({type:"LOADING"});
+    
     API.delete(`posts/${post.id}`)
     .then(()=>{
+        
         const postUpdate=[...posts];
         if(post){
             postUpdate.splice(posts.indexOf(post),1)
         }
+        console.log(postUpdate);
         dispatch({
             type:"DELETE", 
             contain:{

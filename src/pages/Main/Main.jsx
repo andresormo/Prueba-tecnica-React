@@ -14,7 +14,7 @@ const Main = () => {
     flexDirection="column"
     mt="20px"
     >
-    <NewPost posts={posts}/>
+    <NewPost/>
     {loading && <Loading/>}
     
     {posts.map((post)=>{
